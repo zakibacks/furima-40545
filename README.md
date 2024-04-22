@@ -1,24 +1,44 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type   | Options     |
+| ------------------ | ------ | ----------- |
+| nickname           | string | null: false |
+| email              | string | null: false , unique: true |
+| encrypted_password | string | null: false |
+| name               | string | null: false |
+| katakana           | string | null: false |
+| birthday           | string | null: false |
 
-* Ruby version
+## comments テーブル
 
-* System dependencies
+| Column      | Type       | Options                             |
+| ----------- | ---------- | ----------------------------------- |
+| content     | text       | null: false                         |
+| items       | references | null: false, foreign_key: true      |
+| user        | references | null: false, foreign_key:true       |
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column        | Type       | Options                         |
+| ------------  | ---------- | ------------------------------  |
+| image         | string     | null: false                     |
+| product_name  | text       | null: false,                    |
+| description   | text       | null: false                     |
+| category      | string     | null: false                     |
+| delivery_price| string     | null: false                     |
+| delivery_area | string     | null: false                     |
+| delivery_date | string     | null: false                     |
+| price         | string     | null: false                     |
+| user          | references | null: false, foreign_key: true  |
 
-* Database initialization
 
-* How to run the test suite
+##  buyers テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+| Column      | Type       | Options                             |
+| ----------- | ---------- | ----------------------------------- |
+| card        | string     | null: false                         |
+| adress      | string     | null: false                         |
+| items       | references | null: false, foreign_key: true      |
+| user        | references | null: false, foreign_key:true       |
