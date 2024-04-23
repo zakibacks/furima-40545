@@ -47,7 +47,7 @@ has_one : buyer
 belong_to : user
 belong_to : item
 
-has_one : deliveries
+has_one : delivery
 
 
 ## deliveries テーブル
