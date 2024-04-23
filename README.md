@@ -15,7 +15,7 @@
 | birthday           | date   | null: false |
 
 has_many : items
-has_one : buyers
+has_many : buyers
 
 ## items テーブル
 
@@ -32,7 +32,7 @@ has_one : buyers
 | user                 | references | null: false, foreign_key: true  |
 
 belong_to : user
-has_one : buyers
+has_one : buyer
 
 
 
@@ -47,19 +47,19 @@ has_one : buyers
 belong_to : user
 belong_to : item
 
-has_many : deliveries
+has_one : deliveries
 
 
 ## deliveries テーブル
 
-| Column        | Type       | Options                             |
-| -----------   | ---------- | ----------------------------------- |
-| buyers        | references | null: false, foreign_key: true      |
-| postal_code   | string     | null: false                         |
-| genre_id      | integer    | null: false                         |
-| area          | string     | null: false                         |
-| house_number  | string     | null: false                         |
-| Building name | string     | null: false                         |
-| number        | string     | null: false                         |
+| Column           | Type       | Options                             |
+| -----------      | ---------- | ----------------------------------- |
+| buyer            | references | null: false, foreign_key: true      |
+| postal_code      | string     | null: false                         |
+| delivery_area_id | integer    | null: false                         |
+| area             | string     | null: false                         |
+| house_number     | string     | null: false                         |
+| building_name    | string     |                                     |
+| number           | string     | null: false                         |
 
 belong_to : buyer
