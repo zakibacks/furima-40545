@@ -15,22 +15,25 @@
 | birthday           | date   | null: false |
 
 has_many : items
-has_many : deliveries
 has_one : buyers
 
 ## items テーブル
 
-| Column        | Type       | Options                         |
-| ------------  | ---------- | ------------------------------  |
-| product_name  | string     | null: false,                    |
-| description   | text       | null: false                     |
-| genre         | text       | null: false                     |
-| price         | decimal    | null: false                     |
-| user          | references | null: false, foreign_key: true  |
+| Column               | Type       | Options                         |
+| ------------         | ---------- | ------------------------------  |
+| product_name         | string     | null: false                     |
+| description          | text       | null: false                     |
+| price                | decimal    | null: false                     |
+| category_id          | integer    | null: false                     |
+| product_condition_id | integer    | null: false                     |
+| delivery_price_id    | integer    | null: false                     |
+| delivery_area_id     | integer    | null: false                     |
+| delivery_date_id     | integer    | null: false                     |
+| user                 | references | null: false, foreign_key: true  |
 
-belong_to : users
+belong_to : user
 has_one : buyers
-has_one : deliveries
+
 
 
 
@@ -38,21 +41,25 @@ has_one : deliveries
 
 | Column      | Type       | Options                             |
 | ----------- | ---------- | ----------------------------------- |
-| card        | string     | null: false                         |
-| items       | references | null: false, foreign_key: true      |
+| item        | references | null: false, foreign_key: true      |
 | user        | references | null: false, foreign_key:true       |
 
-belong_to : users
-belong_to : items
+belong_to : user
+belong_to : item
+
+has_many : deliveries
+
 
 ## deliveries テーブル
 
-| Column      | Type       | Options                             |
-| ----------- | ---------- | ----------------------------------- |
-| items       | references | null: false, foreign_key: true      |
-| users       | references | null: false, foreign_key: true      |
-| adress      | string     | null: false                         |
-| number      | string     | null: false                         |
+| Column        | Type       | Options                             |
+| -----------   | ---------- | ----------------------------------- |
+| buyers        | references | null: false, foreign_key: true      |
+| postal_code   | string     | null: false                         |
+| genre_id      | integer    | null: false                         |
+| area          | string     | null: false                         |
+| house_number  | string     | null: false                         |
+| Building name | string     | null: false                         |
+| number        | string     | null: false                         |
 
-belong_to : users
-belong_to : items
+belong_to : buyer
