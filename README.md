@@ -23,7 +23,7 @@ has_many : buyers
 | ------------         | ---------- | ------------------------------  |
 | product_name         | string     | null: false                     |
 | description          | text       | null: false                     |
-| price                | decimal    | null: false                     |
+| price                | integer    | null: false                     |
 | category_id          | integer    | null: false                     |
 | product_condition_id | integer    | null: false                     |
 | delivery_price_id    | integer    | null: false                     |
@@ -42,7 +42,7 @@ has_one : buyer
 | Column      | Type       | Options                             |
 | ----------- | ---------- | ----------------------------------- |
 | item        | references | null: false, foreign_key: true      |
-| user        | references | null: false, foreign_key:true       |
+| user        | references | null: false, foreign_key: true      |
 
 belong_to : user
 belong_to : item
