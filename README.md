@@ -31,7 +31,7 @@ has_many : buyers
 | delivery_date_id     | integer    | null: false                     |
 | user                 | references | null: false, foreign_key: true  |
 
-belong_to : user
+belongs_to : user
 has_one : buyer
 
 
@@ -44,8 +44,8 @@ has_one : buyer
 | item        | references | null: false, foreign_key: true      |
 | user        | references | null: false, foreign_key: true      |
 
-belong_to : user
-belong_to : item
+belongs_to : user
+belongs_to : item
 
 has_one : delivery
 
@@ -62,4 +62,4 @@ has_one : delivery
 | building_name    | string     |                                     |
 | number           | string     | null: false                         |
 
-belong_to : buyer
+belongs_to : buyer
