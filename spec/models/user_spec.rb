@@ -2,14 +2,12 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   before do
-    @user = FactoryBot.build(:user)
-    @user.save 
+    @user = FactoryBot.build(:user) 
   end
 
   describe 'ユーザー新規登録' do
     context '正常系' do
       it '全ての項目が入力されていれば登録できる' do
-        @user.birthday = Date.new(2000, 1, 1)
         expect(@user).to be_valid
       end
     end
@@ -63,6 +61,7 @@ RSpec.describe User, type: :model do
       end
       it '重複したメールアドレスは登録できない' do
         another_user = FactoryBot.build(:user, email: @user.email)
+        @user.save
         another_user.valid?
         expect(another_user.errors.full_messages).to include 'Email has already been taken'
       end
