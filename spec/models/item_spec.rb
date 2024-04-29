@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @item = FactoryBot.build(:item) 
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.build(:item, user: @user) 
   end
 
   describe '商品のバリデーション' do
     context '正常系' do
       it '全ての必須項目が正しく入力されている場合、保存ができること' do
-        @item.user = FactoryBot.build(:user)
-        @item.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png', content_type: 'image/png')
+        @item.valid?
         expect(@item).to be_valid
       end
     end
