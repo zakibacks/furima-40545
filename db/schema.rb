@@ -48,9 +48,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_29_061724) do
     t.integer "delivery_price_id", null: false
     t.integer "delivery_area_id", null: false
     t.integer "delivery_date_id", null: false
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|

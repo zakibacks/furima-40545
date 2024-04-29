@@ -13,7 +13,6 @@ class Item < ApplicationRecord
   validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300,
                                                     less_than_or_equal_to: 9_999_999,
                                                     message: 'must be between ¥300 and ¥9,999,999' }
-  validates :price, format: { with: /\A\d+\z/, message: 'must be a number' }
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
