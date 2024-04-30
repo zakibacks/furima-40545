@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!, only: [:new, :show]
   before_action :set_tweet, only: [:edit, :show, :update]
 
   def index
