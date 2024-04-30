@@ -21,6 +21,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
+    unless current_user == @item.user
+      redirect_to root_path, alert: "You are not authorized to edit this item."
+    end
   end
 
   def update
