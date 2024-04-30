@@ -2,14 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @user = FactoryBot.create(:user)
-    @item = FactoryBot.build(:item, user: @user) 
+    @item = FactoryBot.build(:item)
   end
 
   describe '商品のバリデーション' do
     context '正常系' do
       it '全ての必須項目が正しく入力されている場合、保存ができること' do
-        @item.valid?
         expect(@item).to be_valid
       end
     end
