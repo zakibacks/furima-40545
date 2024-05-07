@@ -131,16 +131,16 @@
     <% @items.order(created_at: :desc).each do |item| %>
       <li class='list'>
         <%= link_to item_path(item) do %>
-        <div class='item-img-content'>
-          <%= image_tag item.image, class: "item-img" %>
-
-          <%# if @item.present? && @item.sold_out? %> 
-            <%# <div class='sold-out'>
-              <span>Sold Out!!</span>
-            </div> %>
-          <%# end %> 
-
-        </div>
+          <div class='item-img-content'>
+            <%= image_tag item.image, class: "item-img" %>
+            
+            <% if item.purchased? %> 
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+            <% end %> 
+          </div>
+          
         <div class='item-info'>
           <h3 class='item-name'>
             <%= item.product_name %>

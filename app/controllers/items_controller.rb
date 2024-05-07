@@ -21,6 +21,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.purchased?
+      redirect_to root_path, alert: "この商品は売却済みです。"
+    end
+
     unless current_user == @item.user
       redirect_to root_path, alert: "You are not authorized to edit this item."
     end

@@ -44,7 +44,7 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリーが未選択の場合、保存ができないこと' do
-        @item.category_id = 1 # 未選択のIDを設定
+        @item.category_id = 1 
         @item.valid?
         expect(@item.errors.full_messages).to include "Category can't be blank"
       end

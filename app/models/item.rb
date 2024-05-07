@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
+  has_many :orders
   has_one_attached :image
 
   validates :image, presence: true
@@ -20,4 +21,8 @@ class Item < ApplicationRecord
   belongs_to :delivery_price
   belongs_to :delivery_area
   belongs_to :delivery_date
+
+  def purchased?
+    orders.exists?
+  end
 end
