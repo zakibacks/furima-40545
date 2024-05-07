@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
-  has_one :orders
+  has_one :order
   has_one_attached :image
 
   validates :image, presence: true
@@ -23,6 +23,6 @@ class Item < ApplicationRecord
   belongs_to :delivery_date
 
   def purchased?
-    orders.exists?
+    order.present?
   end
 end
