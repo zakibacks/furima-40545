@@ -6,8 +6,13 @@ FactoryBot.define do
     house_number { '1-1-1' }
     building_name { '' }
     number { '09012345678' }
-    user_id { 1 }
-    item_id { 1 }
     token {"tok_abcdefghijk00000000000000000"}
+    transient do
+      user { create(:user) }
+      item { create(:item) }
+    end
+
+    user_id { user.id }
+    item_id { item.id }
   end
 end

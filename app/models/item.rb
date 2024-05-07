@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :user
-  has_many :orders
+  has_one :orders
   has_one_attached :image
 
   validates :image, presence: true

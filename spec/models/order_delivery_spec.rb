@@ -14,6 +14,11 @@ RSpec.describe OrderDelivery, type: :model do
       it "priceとtokenがあれば保存ができること" do
         expect(@order_delivery).to be_valid
       end
+
+      it '建物名が空でも保存ができること' do
+        @order_delivery.building_name = ''
+        expect(@order_delivery).to be_valid
+      end
     end
 
     context '異常系' do
@@ -30,7 +35,7 @@ RSpec.describe OrderDelivery, type: :model do
       end
 
       it '都道府県が必須であること' do
-        @order_delivery.delivery_area_id = nil
+        @order_delivery.delivery_area_id = 1
         @order_delivery.valid?
         expect(@order_delivery.errors.full_messages).to include "Delivery area can't be blank"
       end
@@ -63,6 +68,24 @@ RSpec.describe OrderDelivery, type: :model do
         @order_delivery.number = '123456789' 
         @order_delivery.valid?
         expect(@order_delivery.errors.full_messages).to include "Number is too short (minimum is 10 characters)"
+      end
+
+      it '電話番号に数字以外が含まれている場合は保存できないこと' do
+        @order_delivery.number = '123-4567-890'
+        @order_delivery.valid?
+        expect(@order_delivery.errors.full_messages).to include "Number is not a number"
+      end
+
+      it 'userが必須であること' do
+        @order_delivery.user_id = nil
+        @order_delivery.valid?
+        expect(@order_delivery.errors.full_messages).to include "User can't be blank"
+      end
+
+      it 'itemが必須であること' do
+        @order_delivery.item_id = nil
+        @order_delivery.valid?
+        expect(@order_delivery.errors.full_messages).to include "Item can't be blank"
       end
 
       it "tokenが空では登録できないこと" do
