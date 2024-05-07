@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_tweet, only: [:edit, :show, :update, :destroy]
+  before_action :set_item, only: [:edit, :show, :update, :destroy]
 
   def index
     @items = Item.order('created_at DESC')
@@ -21,6 +21,10 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.purchased?
+      redirect_to root_path, alert: "この商品は売却済みです。"
+    end
+
     unless current_user == @item.user
       redirect_to root_path, alert: "You are not authorized to edit this item."
     end
@@ -55,7 +59,7 @@ class ItemsController < ApplicationController
                                  :delivery_date_id, :price).merge(user_id: current_user.id)
   end
 
-  def set_tweet
+  def set_item
     @item = Item.find(params[:id])
   end
 end
